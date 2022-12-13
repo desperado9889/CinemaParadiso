@@ -1,4 +1,4 @@
-package com.dm.admin;
+package com.dm.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,16 +15,16 @@ import com.dm.paradiso.RegisterDAO;
 import com.dm.paradiso.RegisterDTO;
 
 /**
- * Servlet implementation class UserModifier
+ * Servlet implementation class ModifyPassword
  */
-@WebServlet("/modify.do")
-public class UserModifier extends HttpServlet {
+@WebServlet("/pmodify.do")
+public class ModifyPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserModifier() {
+    public ModifyPassword() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,33 +33,34 @@ public class UserModifier extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		String m=request.getParameter("id");
-		String p=request.getParameter("pw");
-		String n=request.getParameter("name");
-		String d=request.getParameter("date");
-		System.out.println(m);
-		System.out.println(p);
-		System.out.println(d);
-		System.out.println(n);
+		String old=request.getParameter("old");
+		String newer=request.getParameter("new");
+		RegisterDAO rd = new RegisterDAO();
 		RegisterDTO rt = new RegisterDTO();
-		rt.setPassword(p);
-		rt.setName(n);
-		rt.setDate(d);
-		rt.setId(m);
-		RegisterDAO rd=new RegisterDAO();
+		HttpSession session=request.getSession();
+		String id = (String) session.getAttribute("user_id");
+		
+		rt.setId(id);
 		try {
-			rd.modifyUser(rt);
+			int pwCheck=rd.selectPassword(id, old);
+			System.out.println(pwCheck);
+			if(pwCheck==1) {
+				rt.setPassword(newer);
+				rd.modifyUserP(rt);
+				RequestDispatcher
+				dispatcher=request.getRequestDispatcher("success_p.jsp"); //원하는 뷰 선택해서 포워딩
+				dispatcher.forward(request, response); //<jsp:forward>와 같음
+			}
+			else {
+				RequestDispatcher
+				dispatcher=request.getRequestDispatcher("error_p.jsp");
+				dispatcher.forward(request, response);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
 		}
  
-		 RequestDispatcher
-		 dispatcher=request.getRequestDispatcher("admin_user.do"); //원하는 뷰 선택해서 포워딩
-		 dispatcher.forward(request, response); //<jsp:forward>와 같음
 	}
 
 	/**

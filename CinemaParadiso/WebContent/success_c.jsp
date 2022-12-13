@@ -8,9 +8,8 @@
 </head>
 <body>
 	<script>
-		alert('로그인을 실패하였습니다. ID/PW를 재 확인해 주세요');
-		location.replace('loginForm.jsp');
+		alert('감상평 변경 성공');
+		location.replace('myPage.do');
 	</script>
-<span style="color: red;">${param.message}</span>
 </body>
 </html>

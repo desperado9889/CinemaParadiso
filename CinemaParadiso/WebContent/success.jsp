@@ -8,8 +8,8 @@
 </head>
 <body>
 	<script>
-		alert('환영합니다.');
-		location.replace('index.jsp');
+		alert('회원가입 성공');
+		location.replace('posterSelect.do');
 	</script>
 </body>
 </html>

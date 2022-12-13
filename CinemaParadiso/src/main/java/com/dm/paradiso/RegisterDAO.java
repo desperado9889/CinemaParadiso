@@ -10,8 +10,10 @@ public class RegisterDAO {
 	final String USER_INSERT="insert into cp_account values(?, ?, ?, ?);";
 	final String USER_LIST="select * from cp_account;";
 	final String USER_SELECT="select * from cp_account where id=?;";
+	final String USER_SELECTP="select password from cp_account where id=?;";
 	final String USER_LOGIN="select * from cp_account where id=? and password=?;";
-	final String USER_MODIFY="update cp_account set password=? name=? date=? where id=?";
+	final String USER_MODIFY="update cp_account set password=?, name=?, date=? where id=?";
+	final String USER_MODIFYP="update cp_account set password=? where id=?";
 	final String USER_DELETE="delete from cp_account where id=?";
 	Connection conn=null;
 	PreparedStatement pstmt=null;
@@ -33,8 +35,7 @@ public class RegisterDAO {
 		}
 	}
 
-	public String loginCheck(String id, String password) {
-		String name=null;
+	public int loginCheck(String id, String password) {
 		try {
 	    	conn = JDBCutil.getConnection(); //static 메소드를 쓰려면 클래스이름.메소드()
 			pstmt=conn.prepareStatement(USER_LOGIN);
@@ -42,14 +43,18 @@ public class RegisterDAO {
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				name = rs.getString("name");
+				if(rs.getString("password").equals(password)) {
+					return 1;
+				} else {
+					return 0;
+				}
 			}
 		} catch (Exception e) {
 			
 	    } finally {
 	    	JDBCutil.close(pstmt,conn);
 	    }
-		return name;
+		return -1;
 	}
 	
 	public ArrayList<RegisterDTO> selectMemberList() throws SQLException {	//실행하려는 쿼리마다 메소드 단위로 작성 가능
@@ -131,5 +136,41 @@ public class RegisterDAO {
 			JDBCutil.close(pstmt,conn);
 		}
 	}
+	
+	public int selectPassword(String id, String pw) throws SQLException{
+		try {
+	    	conn = JDBCutil.getConnection(); //static 메소드를 쓰려면 클래스이름.메소드()
+			pstmt=conn.prepareStatement(USER_SELECTP);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("password").equals(pw)) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		} catch (Exception e) {
+			
+	    } finally {
+	    	JDBCutil.close(pstmt,conn);
+	    }
+		return -1;
+	}
+	
+	public void modifyUserP(RegisterDTO mem) throws SQLException{
+		try {
+			conn = JDBCutil.getConnection(); //static 메소드를 쓰려면 클래스이름.메소드()
+			pstmt=conn.prepareStatement(USER_MODIFYP);
+			pstmt.setString(1, mem.getPassword());
+			pstmt.setString(2, mem.getId());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally{
+			JDBCutil.close(pstmt,conn);
+		}
+	}
+	
 	
 }

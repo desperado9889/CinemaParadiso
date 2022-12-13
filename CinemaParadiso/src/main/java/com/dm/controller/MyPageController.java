@@ -1,7 +1,8 @@
-package com.dm.admin;
+package com.dm.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dm.crawling.MovieDAO;
+import com.dm.crawling.MovieDTO;
+import com.dm.paradiso.CommentDAO;
+import com.dm.paradiso.CommentDTO;
 import com.dm.paradiso.RegisterDAO;
 import com.dm.paradiso.RegisterDTO;
 
 /**
- * Servlet implementation class UserModifier
+ * Servlet implementation class MyPageController
  */
-@WebServlet("/modify.do")
-public class UserModifier extends HttpServlet {
+@WebServlet("/myPage.do")
+public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserModifier() {
+    public MyPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,33 +38,36 @@ public class UserModifier extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		String m=request.getParameter("id");
-		String p=request.getParameter("pw");
-		String n=request.getParameter("name");
-		String d=request.getParameter("date");
-		System.out.println(m);
-		System.out.println(p);
-		System.out.println(d);
-		System.out.println(n);
-		RegisterDTO rt = new RegisterDTO();
-		rt.setPassword(p);
-		rt.setName(n);
-		rt.setDate(d);
-		rt.setId(m);
-		RegisterDAO rd=new RegisterDAO();
+		MovieDAO mdao=new MovieDAO();
+		CommentDAO cdao=new CommentDAO();
+		RegisterDAO rdao=new RegisterDAO();
+		MovieDTO tList= new MovieDTO();
+		HttpSession session=request.getSession();
+		String id = (String) session.getAttribute("user_id"); 
+			
 		try {
-			rd.modifyUser(rt);
+			request.setCharacterEncoding("UTF-8");
+			ArrayList<CommentDTO> cuList=cdao.selectComment_user(id);
+			session.setAttribute("cuList", cuList);
+			ArrayList<RegisterDTO> mList=rdao.selectUser(id);
+			session.setAttribute("ulist", mList);
+			
+			/*
+			for(int i=0;i<cuList.size();i++) {
+				String comment_mc=cuList.get(i).getMovie_code();
+				ArrayList<MovieDTO> mcList=mdao.selectTitle(comment_mc);
+				if(comment_mc.equals(mcList.get(i).getMovie_code())) {
+					tList=mcList.get(i);
+				}
+			}
+			session.setAttribute("tList", tList);*/
+			RequestDispatcher dispatcher=request.getRequestDispatcher("myPage.jsp"); //forwarding
+			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.sendRedirect("error.jsp");
 		}
- 
-		 RequestDispatcher
-		 dispatcher=request.getRequestDispatcher("admin_user.do"); //원하는 뷰 선택해서 포워딩
-		 dispatcher.forward(request, response); //<jsp:forward>와 같음
 	}
 
 	/**

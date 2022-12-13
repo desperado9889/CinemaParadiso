@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script>
-		alert('로그인을 실패하였습니다. ID/PW를 재 확인해 주세요');
-		location.replace('loginForm.jsp');
-	</script>
-<span style="color: red;">${param.message}</span>
+<h1><a href="posterInsert.do">DB에 삽입</a></h1>	<!-- MemberListController와 연결(/list.do) -->
 </body>
 </html>

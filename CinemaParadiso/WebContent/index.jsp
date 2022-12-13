@@ -1,3 +1,5 @@
+<%@page import="com.dm.crawling.MovieDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +17,17 @@
 	<!-- ---- -->
 	
 	<!-- Top -->
+	<%
+	ArrayList<MovieDTO> vlist = (ArrayList<MovieDTO>) session.getAttribute("vlist");
+	ArrayList<String> url= new ArrayList<>();
+	ArrayList<String> code= new ArrayList<>();
+	for(int i=0; i<vlist.size(); i++) {
+		MovieDTO regBean = vlist.get(i);
+		url.add(regBean.getPoster());
+		code.add(regBean.getMovie_code());
+	}%>
+	
+
 	<main>
 		<div class="container">
 			<div class="columns is-multiline p-0 pt-6 last" style="margin-top: 0px; align-content: center; justify-content: center;">
@@ -22,37 +35,57 @@
 					<p id="title_m">| <span class="title_text">Top box office</span></p>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img1.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(0)%>" alt="<%=code.get(0) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img2.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(1)%>" alt="<%=code.get(1) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img3.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(2)%>" alt="<%=code.get(2) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img4.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(3)%>" alt="<%=code.get(3) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img5.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(4)%>" alt="<%=code.get(4) %>">
+					</a>
 				</div>
 				
 			</div>
 			<div class="columns last" style="justify-content: center;">
 				<div class="column is-one-quarter">
-					<img src="img/img6.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(5)%>" alt="<%=code.get(5) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img7.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(6)%>" alt="<%=code.get(6) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img8.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(7)%>" alt="<%=code.get(7) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img9.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(8)%>" alt="<%=code.get(8) %>">
+					</a>
 				</div>
 				<div class="column is-one-quarter">
-					<img src="img/img10.jpg">
+					<a href="infoSelect.do">
+						<img src="<%= url.get(9)%>" alt="<%=code.get(9) %>">
+					</a>
 				</div>
 			</div>
 		<!-- ---- -->

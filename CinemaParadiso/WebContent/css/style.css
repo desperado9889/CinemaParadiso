@@ -421,3 +421,67 @@ tr{
 	width: 100px;
 	
 }
+
+#user_search_form{
+	position: absolute;
+	width: 1200px;
+	left: 30%;
+	top: 15%;
+}
+
+#user_modify_form{
+	position: absolute;
+	width: 1200px;
+	left: 30%;
+	top: 30%;
+}
+#user_modify_tb{
+	width: 1200px;
+}
+#search_input{
+	width: 1200px;
+}
+#admin_title{
+	color:#da1928;
+	text-align:center;
+}
+
+/*userinfo-mypage*/
+.user_info_table{
+	width: 450px;
+	text-align:center;
+	color: black;
+}
+
+.user_info_table td{
+	vertical-align:middle;
+}
+.user_info_table tr, td{
+	border:2px solid white;
+	color: rgb(0,0,0);
+	font-weight:bold;
+}
+
+.user_info_td{
+	margin: 100px 0px;
+	background-color:#da1928;
+}
+
+#modify_btn{
+	background-color:#da1928;
+}
+
+.modify_input{
+	background-color:#878787;
+}
+
+/*admin 테이블 수정*/
+#user_table td{
+	color:rgb(255,255,255)
+}
+#table_div td{
+	color:rgb(255,255,255)
+}
+.c_input{
+	color:rgb(0,0,0)
+}

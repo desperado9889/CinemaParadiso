@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html style="height: 1300px;">
 <head>
@@ -20,10 +21,9 @@
 </style>
 </head>
 <body>
-
 	<!-- header -->
 	<%@ include file="nav.jsp" %>
-
+	
 	<main style="height: 1100px">
 	    <div class="background">
 	        <div class="shape"></div>

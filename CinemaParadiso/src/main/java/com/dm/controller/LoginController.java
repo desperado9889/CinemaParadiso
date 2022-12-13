@@ -32,19 +32,16 @@ public class LoginController extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RegisterDAO rdao=new RegisterDAO();
-		String url = request.getRequestURL().toString();
 		try {
-			request.setCharacterEncoding("UTF-8");
 			String id=request.getParameter("id");
 			String pw=request.getParameter("password");
-			
-			String name = rdao.loginCheck(id, pw);
+			int loginCheck= rdao.loginCheck(id, pw);
 			String msg= new String();
 			String page= new String();
 			System.out.println(id+","+pw);
-			if(name != null) {
-				msg = name + "님 환영합니다.";
+			if(loginCheck==1) {
 				// session 객체 인스턴스
+				request.setAttribute("loginCheck", loginCheck);
 				HttpSession session = request.getSession();
 				session.setAttribute("user_login", "accept");
 				session.setAttribute("user_id", id);
@@ -54,9 +51,10 @@ public class LoginController extends HttpServlet {
 			    	response.sendRedirect(request.getContextPath() + page);
 				}	
 			    else {
-			    	response.sendRedirect(request.getContextPath() + "/index.jsp?message="+URLEncoder.encode(msg, "utf-8"));
+			    	response.sendRedirect("posterSelect.do");
 			    }
 			} else {
+				request.setAttribute("loginCheck", loginCheck);
 				msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
 				page = "/error.jsp?message="+URLEncoder.encode(msg, "utf-8");
 				response.sendRedirect(request.getContextPath() + page);	

@@ -15,7 +15,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<a href="index.jsp">
+			<a href="posterSelect.do">
 				<img src="img/logo.png">
 			</a>
 		</div>
@@ -33,7 +33,7 @@
 			<% if (login_ch==null){ %>
 			<a href="loginForm.jsp" id="log_button">Login</a>
 			<% } else {%>
-			<a href="myPage.jsp"><i class="fas fa-user"></i></a>
+			<a href="myPage.do"><i class="fas fa-user"></i></a>
 			<a href="logout.do" id="log_button">Logout</a>
 			<% }%>
 		</div>

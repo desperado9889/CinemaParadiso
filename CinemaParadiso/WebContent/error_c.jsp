@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-		alert('로그인을 실패하였습니다. ID/PW를 재 확인해 주세요');
+		alert('로그인 후 이용할 수 있습니다');
 		location.replace('loginForm.jsp');
 	</script>
 <span style="color: red;">${param.message}</span>

@@ -1,6 +1,7 @@
 package com.dm.controller;
 
 import java.io.IOException;
+import java.io.Writer;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -47,9 +48,8 @@ public class SignUpController extends HttpServlet {		//signature
 			e.printStackTrace();
 			response.sendRedirect("error.jsp");
 		}
- 
-		 RequestDispatcher
-		 dispatcher=request.getRequestDispatcher("success.jsp"); //원하는 뷰 선택해서 포워딩
-		 dispatcher.forward(request, response); //<jsp:forward>와 같음
+
+			RequestDispatcher dispatcher=request.getRequestDispatcher("success.jsp"); //원하는 뷰 선택해서 포워딩
+			dispatcher.forward(request, response); //<jsp:forward>와 같음
 		}
 }

@@ -11,10 +11,29 @@
 </head>
 
 <body>
-
-	<!-- header -->
-	<%@ include file="nav.jsp" %>
-	
+	<header>
+		<div class="logo">
+			<a href="adminPage.jsp">
+				<img src="img/logo.png">
+			</a>
+		</div>
+		<div class="nav">
+			<ul>
+				<li><a href="admin_user.do">Admin</a></li>
+				<li><a href="admin_user3.do">User Modify</a></li>
+				<li><a href="admin_user2.do">User Delete</a></li>
+				<li><a href="">Best</a></li>
+				<li><a href="">Reviews</a></li>
+				<li><a href="">Forum</a></li>
+			</ul>
+		</div>
+		<div class="user">
+			<i class="fas fa-bell"></i>
+			<i class="fas fa-search"></i>
+			<a href="myPage.jsp"><i class="fas fa-user"></i></a>
+			<a href="logout.do" id="log_button">Logout</a>
+		</div>
+	</header>
 	<main>
 		<div id="table_div">
 			<form id="user_tb_form" action="delete.do">
@@ -27,6 +46,7 @@
 					ArrayList<RegisterDTO> vlist = (ArrayList<RegisterDTO>) session.getAttribute("vlist");
 					for(int i=0; i<vlist.size(); i++) {
 					RegisterDTO regBean = vlist.get(i);
+					System.out.println(vlist.get(i));
 				%>
 				<tr>
 					<td><input type="checkbox" class="check" name="checkUser" value="<%=regBean.getId()%>"></td>
@@ -35,13 +55,6 @@
 					<td><%= regBean.getPassword()%></td>
 					<td><%= regBean.getName()%></td>
 					<td><%= regBean.getDate()%></td>
-					<!--  
-					<td id="td_input">
-						<form action="">
-							<input id="modify_pw" type="text" name="modified_pw">
-							<input type="submit" class="modify_submit" value="Modify">
-						</form>
-					</td>-->
 				</tr>
 				<%
 					}
@@ -51,8 +64,5 @@
 			</form>
 		</div>
 	</main>
-	
-	<!-- footer -->
-	<%@ include file="footer.jsp" %>
 </body>
 </html>
