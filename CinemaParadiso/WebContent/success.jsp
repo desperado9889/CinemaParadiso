@@ -9,7 +9,7 @@
 <body>
 	<script>
 		alert('회원가입 성공');
-		location.replace('posterSelect.do');
+		location.replace('loginForm.jsp');
 	</script>
 </body>
 </html>

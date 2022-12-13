@@ -33,7 +33,7 @@
 			<% if (login_ch==null){ %>
 			<a href="loginForm.jsp" id="log_button">Login</a>
 			<% } else {%>
-			<a href="myPage.do"><i class="fas fa-user"></i></a>
+			<a href="myPage.do" id="my_page"><i class="fas fa-user"></i></a>
 			<a href="logout.do" id="log_button">Logout</a>
 			<% }%>
 		</div>

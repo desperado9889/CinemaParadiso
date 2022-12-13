@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html style="height: 1500px">
+<html style="height: 1790px">
 <head>
   <meta charset="UTF-8">
   <title>Cinema Paradiso</title>
@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="css/style.scss">
   <link rel="stylesheet" href="css/star.css">
 </head>
-<body>
+<body style="background-color: black;">
 <%
 	ArrayList<MovieDTO> miList = (ArrayList<MovieDTO>) session.getAttribute("miList");
 	MovieDTO movieInfo = miList.get(0);
-	double avg=(double)session.getAttribute("average");
+	String avg=(String)session.getAttribute("average");
 %>
 <!-- header  -->
 	<%@ include file="nav.jsp" %>
@@ -44,7 +44,7 @@
     		</div>
 		    <div class="description">
 	      		<div class="column2">
-	      			<p class="aud"><%= movieInfo.getAudience()%></p><br>
+	      			<p class="aud"><%= movieInfo.getAudience()%></p>
 	        		<p class="synop"><%= movieInfo.getSynopsis()%></p>
 	        
 		      	</div> <!-- end column2 -->
@@ -61,28 +61,30 @@
 				        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
 				        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
 				    </fieldset><br>
+				    <div class="input_box">
 				    <%if(login_ch==null){%> 
-					<input type="text" name="comment" id="mycomment" placeholder="로그인 후 감상평을 등록해주세요"><input type="submit" value="등록"/> 
-					<%}else{%>
-					<input type="text" name="comment" id="mycomment" placeholder="별점과 감상평을 등록해주세요"><input type="submit" value="등록"/> 	
-					<%}%>
+						<input type="text" name="comment" id="mycomment" placeholder="로그인 후 감상평을 등록해주세요"><input class="submit" type="submit" value="등록"/> 
+						<%}else{%>
+						<input type="text" name="comment" id="mycomment" placeholder="별점과 감상평을 등록해주세요"><input class="submit" type="submit" value="등록"/> 	
+						<%}%>
+					</div>
 				</form>
-				<table>
 					<%
 						ArrayList<CommentDTO> cList = (ArrayList<CommentDTO>) session.getAttribute("cList");
 						for(int i=0; i<cList.size(); i++) {
-							CommentDTO comment = cList.get(i);
-							out.println(comment.getId());
-							out.println(comment.getRating());
-							out.println(comment.getComment());
-						}
+						CommentDTO comment = cList.get(i);
 					%>
-				</table> 
+					<ul class="comment">
+						<li class="comment">⭐<%= comment.getRating()%><br>
+						<span class="comment"><%= comment.getId()%></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= comment.getComment()%><br></li>
+					</ul>	
+						<%
+							}
+						%>
 			</div> <!-- end rating -->
   		</div> <!-- end container -->
   		
 	</div> <!-- end movie-card -->	
-	
 	<!-- footer -->
 	
 	<%@ include file="footer.jsp" %>

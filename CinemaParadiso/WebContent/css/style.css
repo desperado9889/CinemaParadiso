@@ -41,8 +41,9 @@ header {
 	padding: 0px 20px;
 	color: rgb(227,238,227);
 }
+
 .nav ul li a:hover {
-	color: red;
+	color: #FF0000;
 	font-weight: bold;
 }
 .user {
@@ -51,16 +52,28 @@ header {
 	margin-top: 40px;
 	margin-right: 40px;
 }
+#my_page {
+	color: #ffd700;
+}
+
+#my_page visited{
+	color: #ffd700;
+}
+
+#my_page active{
+	color: #ffd700;
+}
+
 #log_button {
 	text-decoration: none;
 	color: white;
-	background-color: red;
+	background-color: #FF0000;
 	border-radius: 10px;
 	padding: 10px 30px;
 }
 #log_button:hover {
 	background-color: black;
-	color: red;
+	color: #FF0000;
 	font-weight: bold;
 }
 .user i {
@@ -83,10 +96,10 @@ main {
 	margin-left:170px
 }
 .title_text{
-	color:#DA1928
+	color:#FF0000
 }
 .cmt_num{
-	color:#DA1928
+	color:#FF0000
 }
 .column.is-one-quarter{
 	width: 204px;
@@ -256,7 +269,7 @@ input{
 button{
     margin-top: 50px;
     width: 100%;
-    background-color: #da1928;
+    background-color: #FF0000;
     color: #ffffff;
     padding: 15px 0;
     font-size: 18px;
@@ -273,7 +286,7 @@ button{
 	margin-left: 30px;
 }
 #signup_l a:hover{
-	color: #DA1928
+	color: #FF0000
 }
 
 #signup_f{
@@ -469,6 +482,7 @@ tr{
 
 #modify_btn{
 	background-color:#da1928;
+	margin-top: 25px;
 }
 
 .modify_input{
@@ -484,4 +498,7 @@ tr{
 }
 .c_input{
 	color:rgb(0,0,0)
+}
+.user_info_table2 tr, td {
+	color:rgb(255,255,255)
 }

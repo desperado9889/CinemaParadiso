@@ -1,3 +1,4 @@
+
 #myform fieldset{
     display: flex; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     direction: rtl; /* 이모지 순서 반전 */
@@ -8,6 +9,7 @@
     text-align: left;
     font-size: 30px;
     font-style: oblique;
+    margin-bottom: 10px;
 }
 #myform input[type=radio]{
     display: none; /* 라디오박스 감춤 */
@@ -19,19 +21,23 @@
     margin-top: 0px;
 }
 #myform label:hover{
-    text-shadow: 0 0 0 #a00; /* 마우스 호버 */
+    text-shadow: 0 0 0 #FF0000; /* 마우스 호버 */
 }
 #myform label:hover ~ label{
-    text-shadow: 0 0 0 #a00; /* 마우스 호버 뒤에오는 이모지들 */
+    text-shadow: 0 0 0 #FF0000; /* 마우스 호버 뒤에오는 이모지들 */
 }
 #myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
+    text-shadow: 0 0 0 #FF0000; /* 마우스 클릭 체크 */
 }
 #myform input[type=text]{
-	display: flex;
 	width: 800px;
 	margin-right: 0px;
 }
 #myform input[type=submit]{
 	width: 50px;
+	cursor: pointer;
+}
+
+.submit {
+	background-color: #FF0000;
 }

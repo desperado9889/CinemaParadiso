@@ -49,11 +49,13 @@ public class MovieInfoController extends HttpServlet {
 				rating_sum= rating_sum+cList.get(i).getRating();
 			}
 			aver=rating_sum/cList.size();
+			
+			String average=String.format("%.1f",aver);
 			System.out.println(aver);
 			HttpSession session=request.getSession();
 			session.setAttribute("miList", miList);
 			session.setAttribute("cList", cList);
-			session.setAttribute("average", aver);
+			session.setAttribute("average", average);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

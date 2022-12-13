@@ -35,13 +35,13 @@
 			    <c:forEach items="${ulist}" var="userInfo">	
 					<tr>
 						<i class="fas fa-user" style="font-size:100px"></i>
-						<td class="user_info_td">ID</td><td>${userInfo.id}</td>
+						<td class="user_info_td">ID</td><td style="color: #878787">${userInfo.id}</td>
 					</tr>
 					<tr>
-						<td class="user_info_td">Name</td><td>${userInfo.name}</td>
+						<td class="user_info_td">Name</td><td style="color: #878787">${userInfo.name}</td>
 					</tr>
 					<tr>
-						<td class="user_info_td">Date of Birth</td><td>${userInfo.date}</td>
+						<td class="user_info_td">Date of Birth</td><td style="color: #878787">${userInfo.date}</td>
 					</tr>
 				</c:forEach>
 				</table>
@@ -55,35 +55,28 @@
 			    </form>
 			  </div>
 			  <div class="panel" id="three-panel">
-			    <div class="panel-title">Review Modify</div>
+			    <div class="panel-title">Review</div>
 			    <c:forEach items="${cuList}" var="commentInfo">	
 			    <form id="comment_modify" action="reviewmod.do">
 			    <table class="user_info_table">
 					<tr>
-						<td class="user_info_td">Title</td><td>${commentInfo.id}</td>
+						<td class="user_info_td">Title</td><td style="color: #878787">올빼미</td>
 					</tr>
 					<tr>	
-						<td class="user_info_td">Rating</td><td>
-						<fieldset>
-					        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-					        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-					        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-					        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-					        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
-				    	</fieldset><br></td>
+						<td class="user_info_td">Rating</td><td style="color: #878787">${commentInfo.rating}</td>
 					</tr>
 					<tr>
-						<td class="user_info_td">Comment</td><td><input class="c_input" type="text" value="${commentInfo.comment}"name="comment"></td>
+						<td class="user_info_td">Comment</td><td style="color: #878787">${commentInfo.comment}</td>
 					</tr>	
 				</table>
-				<button type="submit">Modify</button>
+
 				</form>
 				</c:forEach>
 			</div>
 			  </div>
 			  <div class="panel" id="four-panel">
-			    <div class="panel-title">Note on Prerequisites</div>
-			    <p>We recommend that you complete Learn HTML before learning CSS.</p>
+			    <div class="panel-title"></div>
+			    <p></p>
 			  </div>
 			  </div>
 			</div>

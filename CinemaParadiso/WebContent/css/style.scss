@@ -1,19 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-body {
-  background: #43423E;
-  height: 100%;
-}
-
 .movie-card {
-  color: #A9A8A3;
+  color: black;
   padding: 40px 0;
-  height: 1300px;
+  height: 1600px;
 }
 
 .container {
@@ -69,7 +60,7 @@ body {
 }
 
 .description {
-  
+  margin-bottom: 70px;
   bottom: 0px;
   height: 200px;
   font-size: 16px;
@@ -140,10 +131,32 @@ p.synop {
 }
 
 .form {
-	display: block;
-	width: 1350px;
-	height: 480px;
+	display: inline-block;
+	width: 1000px;
+	height: auto;
 	background-color: rgba(36, 36, 36, 0.5);
 	border-radius: 10px;
 	padding: 30px;
+	margin-left: 150px;
+}
+
+.input_box {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+ul.comment {
+	color: white;
+}
+
+li.comment {
+	margin-bottom: 20px;
+}
+
+span.comment {
+	background: #C4AF3D;
+    border-radius: 5px;
+    color: #544C21;
+    font-size: 14px;
+    padding: 0px 8px;
 }
